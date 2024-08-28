@@ -1,31 +1,11 @@
-import React from 'react';
+// import React from 'react';
+import './index.css';
+import ToDoList from './components/ToList';
 
-function App() {
+export default function App() {
   return (
-    <div className='grid grid-rows-[150px_auto]'>
-      <header className=''>
-        Seção do Header
-      </header>
-
-      <main className='flex justify-evenly p-custom'>
-        <section className='w-1/3 bg-[#FF6347] m-[20px]'>
-          Sessão 1
-        </section>
-
-        <section className='w-1/3 bg-[#FF6347] m-[20px]'>
-          Sessão 2
-        </section>
-
-        <section className='w-1/3 bg-[#FF6347] m-[20px]'>
-          Sessão 3
-        </section>
-      </main>
-
-      <footer className=''>
-        Isto é o fim
-      </footer>
+    <div className="App">
+      <ToDoList />
     </div>
   );
 }
-
-export default App;
