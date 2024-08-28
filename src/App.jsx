@@ -1,11 +1,10 @@
-// import React from 'react';
 import './index.css';
-import ToDoList from './components/ToList';
+import TodoList from './components/TodoList';
 
 export default function App() {
   return (
     <div className="App">
-      <ToDoList />
+      <TodoList />
     </div>
   );
 }
