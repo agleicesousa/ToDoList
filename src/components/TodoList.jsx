@@ -66,7 +66,7 @@ export default function ToDoList() {
                             <button onClick={() => handleEditTask(index)} className="">
                                 Editar
                             </button>
-                            
+
                             <button onClick={() => handleRemoveTask(index)} className="">
                                 Apagar
                             </button>
@@ -76,7 +76,12 @@ export default function ToDoList() {
             </main>
 
             <footer className="">
-                <p className="">Agleice Sousa, todos os direitos reservados</p>
+                <p className="">Copyright &copy; {new Date().getFullYear()} de <a
+                    href="#" target="_blank" rel="noopener noreferrer"
+                    className=""
+                > Agleice Sousa
+                </a>
+                </p>
             </footer>
         </div>
     );
