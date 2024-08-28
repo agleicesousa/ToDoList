@@ -40,7 +40,7 @@ export default function ToDoList() {
     const handleRemoveTask = (index) => {
         const updatedTasks = tasks.filter((_, i) => i !== index);
         setTasks(updatedTasks);
-        setFeedback('Task removed successfully');
+        setFeedback('Tarefa removida com sucesso!');
     };
 
     return (
@@ -52,7 +52,7 @@ export default function ToDoList() {
             <main className="">
                 {feedback && <p>{feedback}</p>}
                 <input
-                    type="text" value={newTask}onChange={(e) => setNewTask(e.target.value)}
+                    type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}
                     placeholder="Digite uma nova tarefa..."
                     className=""
                 />
@@ -62,17 +62,17 @@ export default function ToDoList() {
 
                 <ul className="">
                     {tasks.map((task, index) => (
-                        <li key={index} className="">
-                            {task}
-                            <button onClick={() => handleEditTask(index)}
-                            className="">
+                        <li key={index} className=""> {task}
+                            <button onClick={() => handleEditTask(index)} className="">
                                 Editar
+                            </button>
+                            
+                            <button onClick={() => handleRemoveTask(index)} className="">
+                                Apagar
                             </button>
                         </li>
                     ))}
                 </ul>
-
-                <button onClick={handleRemoveTask}>Apagar tarefa</button>
             </main>
 
             <footer className="">
