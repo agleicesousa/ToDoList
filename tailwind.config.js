@@ -4,7 +4,11 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      padding: {
+        'custom': '20px 8%',
+      },
+    },
   },
   plugins: [],
 }
