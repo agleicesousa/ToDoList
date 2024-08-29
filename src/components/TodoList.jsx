@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import TaskForm from './TaskForm';
 
 export default function ToDoList() {
     const [tasks, setTasks] = useState(() => {
@@ -6,34 +7,31 @@ export default function ToDoList() {
         return savedTasks ? JSON.parse(savedTasks) : [];
     });
     const [feedback, setFeedback] = useState('');
-    const [newTask, setNewTask] = useState('');
     const [editIndex, setEditIndex] = useState(null);
 
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
 
-    const handleAddTask = () => {
-        if (newTask.trim() !== '') {
+    const handleAddTask = ({ task }) => {
+        if (task.trim() !== '') {
             if (editIndex !== null) {
-                const updatedTasks = tasks.map((task, i) =>
-                    i === editIndex ? newTask : task
+                const updatedTasks = tasks.map((t, i) =>
+                    i === editIndex ? task : t
                 );
                 setTasks(updatedTasks);
                 setEditIndex(null);
                 setFeedback('Tarefa atualizada com sucesso!');
             } else {
-                setTasks([...tasks, newTask]);
+                setTasks([...tasks, task]);
                 setFeedback('Tarefa adicionada com sucesso!');
             }
-            setNewTask('');
         } else {
             setFeedback('Por favor, insira uma tarefa.');
         }
     };
 
     const handleEditTask = (index) => {
-        setNewTask(tasks[index]);
         setEditIndex(index);
     };
 
@@ -51,18 +49,16 @@ export default function ToDoList() {
 
             <main className="">
                 {feedback && <p>{feedback}</p>}
-                <input
-                    type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}
-                    placeholder="Digite uma nova tarefa..."
-                    className=""
+                <TaskForm 
+                    onAddTask={handleAddTask} 
+                    editIndex={editIndex} 
+                    tasks={tasks} 
                 />
-                <button onClick={handleAddTask} className="">
-                    {editIndex !== null ? 'Atualizar tarefa' : 'Adicionar tarefa'}
-                </button>
 
                 <ul className="">
                     {tasks.map((task, index) => (
-                        <li key={index} className=""> {task}
+                        <li key={index} className=""> 
+                            {task}
                             <button onClick={() => handleEditTask(index)} className="">
                                 Editar
                             </button>
@@ -77,10 +73,9 @@ export default function ToDoList() {
 
             <footer className="">
                 <p className="">Copyright &copy; {new Date().getFullYear()} de <a
-                    href="#" target="_blank" rel="noopener noreferrer"
-                    className=""
-                > Agleice Sousa
-                </a>
+                    href="#" target="_blank" rel="noopener noreferrer" className="">
+                        Agleice Sousa
+                    </a>
                 </p>
             </footer>
         </div>
