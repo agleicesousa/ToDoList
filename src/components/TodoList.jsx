@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import TaskForm from './TaskForm';
+import TaskItem from './TaskItem';
+import Feedback from './Feedback';
 
 export default function ToDoList() {
     const [tasks, setTasks] = useState(() => {
@@ -41,20 +43,16 @@ export default function ToDoList() {
         setFeedback('Tarefa removida com sucesso!');
     };
 
-    const formatDate = (dateString) => {
-        const [year, month, day] = dateString.split('-');
-        return `${day}-${month}-${year}`;
-    };
-
     return (
         <div className="">
             <header className="">
-                <h1 className="">Lista de Tarefas</h1>
+                <h1 className="">
+                    Lista de Tarefas
+                </h1>
             </header>
 
             <main className="">
-                {feedback && <p className="">
-                    {feedback}</p>}
+                <Feedback message={feedback} />
                 <TaskForm
                     onAddTask={handleAddTask}
                     editIndex={editIndex}
@@ -63,25 +61,19 @@ export default function ToDoList() {
 
                 <ul className="">
                     {tasks.map((task, index) => (
-                        <li key={index} className="">
-                            <span className="">
-                                {task.task} - {formatDate(task.dueDate)}
-                            </span>
-                            <button onClick={() => handleEditTask(index)}
-                            className="">
-                                Editar
-                            </button>
-                            <button onClick={() => handleRemoveTask(index)}
-                            className="">
-                                Apagar
-                            </button>
-                        </li>
+                        <TaskItem
+                            key={index}
+                            task={task}
+                            index={index}
+                            onEdit={handleEditTask}
+                            onRemove={handleRemoveTask}
+                        />
                     ))}
                 </ul>
             </main>
 
-            <footer className="footer">
-                <p className="footer-text">
+            <footer className="">
+                <p className="">
                     Copyright &copy; {new Date().getFullYear()} de{' '}
                     <a href="#" target="_blank" rel="noopener noreferrer"
                     className="">
