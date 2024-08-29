@@ -31,14 +31,11 @@ export default function TaskForm({ onAddTask, editIndex, tasks }) {
             <input type="text" value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
                 placeholder="Escreva sua tarefa..."
-                className=""
-            />
+                className=""/>
             <input type="date" value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-                className=""
-            />
-            <button onClick={handleSubmit}
-            className="">
+                className=""/>
+            <button onClick={handleSubmit} className="">
                 {editIndex !== null ? 'Atualizar tarefa' : 'Adicionar tarefa'}
             </button>
         </div>

@@ -5,10 +5,13 @@ function formatDate(dateString) {
     return `${day}-${month}-${year}`;
 }
 
-export default function TaskItem({ task, onEdit, onRemove, index }) {
+export default function TaskItem({ task, onEdit, onRemove, index, onToggleComplete }) {
     return (
         <li className="">
             <span className="">
+                <input type="checkbox" checked={task.completed}
+                onChange={() => onToggleComplete(index)}
+                    className=""/>
                 {task.task} - {formatDate(task.dueDate)}
             </span>
             <button onClick={() => onEdit(index)} className="">
@@ -24,9 +27,11 @@ export default function TaskItem({ task, onEdit, onRemove, index }) {
 TaskItem.propTypes = {
     task: PropTypes.shape({
         task: PropTypes.string.isRequired,
-        dueDate: PropTypes.string.isRequired
+        dueDate: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired,
     }).isRequired,
     onEdit: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
+    onToggleComplete: PropTypes.func.isRequired,
 };
