@@ -11,12 +11,10 @@ export default function TaskItem({ task, onEdit, onRemove, index }) {
             <span className="">
                 {task.task} - {formatDate(task.dueDate)}
             </span>
-            <button onClick={() => onEdit(index)}
-            className="">
+            <button onClick={() => onEdit(index)} className="">
                 Editar
             </button>
-            <button onClick={() => onRemove(index)}
-            className="">
+            <button onClick={() => onRemove(index)} className="">
                 Apagar
             </button>
         </li>

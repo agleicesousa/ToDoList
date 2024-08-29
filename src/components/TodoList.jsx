@@ -46,9 +46,7 @@ export default function ToDoList() {
     return (
         <div className="">
             <header className="">
-                <h1 className="">
-                    Lista de Tarefas
-                </h1>
+                <h1 className="">Lista de Tarefas</h1>
             </header>
 
             <main className="">

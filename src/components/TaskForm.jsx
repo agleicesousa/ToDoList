@@ -10,6 +10,9 @@ export default function TaskForm({ onAddTask, editIndex, tasks }) {
             const taskToEdit = tasks[editIndex];
             setNewTask(taskToEdit.task);
             setDueDate(taskToEdit.dueDate || '');
+        } else {
+            setNewTask('');
+            setDueDate('');
         }
     }, [editIndex, tasks]);
 
@@ -30,7 +33,7 @@ export default function TaskForm({ onAddTask, editIndex, tasks }) {
                 placeholder="Escreva sua tarefa..."
                 className=""
             />
-            <input type="" value={dueDate}
+            <input type="date" value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
                 className=""
             />
