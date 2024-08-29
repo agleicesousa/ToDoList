@@ -13,17 +13,17 @@ export default function ToDoList() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
 
-    const handleAddTask = ({ task }) => {
+    const handleAddTask = ({ task, dueDate }) => {
         if (task.trim() !== '') {
             if (editIndex !== null) {
                 const updatedTasks = tasks.map((t, i) =>
-                    i === editIndex ? task : t
+                    i === editIndex ? { task, dueDate } : t
                 );
                 setTasks(updatedTasks);
                 setEditIndex(null);
                 setFeedback('Tarefa atualizada com sucesso!');
             } else {
-                setTasks([...tasks, task]);
+                setTasks([...tasks, { task, dueDate }]);
                 setFeedback('Tarefa adicionada com sucesso!');
             }
         } else {
@@ -41,6 +41,11 @@ export default function ToDoList() {
         setFeedback('Tarefa removida com sucesso!');
     };
 
+    const formatDate = (dateString) => {
+        const [year, month, day] = dateString.split('-');
+        return `${day}-${month}-${year}`;
+    };
+
     return (
         <div className="">
             <header className="">
@@ -48,22 +53,26 @@ export default function ToDoList() {
             </header>
 
             <main className="">
-                {feedback && <p>{feedback}</p>}
-                <TaskForm 
-                    onAddTask={handleAddTask} 
-                    editIndex={editIndex} 
-                    tasks={tasks} 
+                {feedback && <p className="">
+                    {feedback}</p>}
+                <TaskForm
+                    onAddTask={handleAddTask}
+                    editIndex={editIndex}
+                    tasks={tasks}
                 />
 
                 <ul className="">
                     {tasks.map((task, index) => (
-                        <li key={index} className=""> 
-                            {task}
-                            <button onClick={() => handleEditTask(index)} className="">
+                        <li key={index} className="">
+                            <span className="">
+                                {task.task} - {formatDate(task.dueDate)}
+                            </span>
+                            <button onClick={() => handleEditTask(index)}
+                            className="">
                                 Editar
                             </button>
-
-                            <button onClick={() => handleRemoveTask(index)} className="">
+                            <button onClick={() => handleRemoveTask(index)}
+                            className="">
                                 Apagar
                             </button>
                         </li>
@@ -71,9 +80,11 @@ export default function ToDoList() {
                 </ul>
             </main>
 
-            <footer className="">
-                <p className="">Copyright &copy; {new Date().getFullYear()} de <a
-                    href="#" target="_blank" rel="noopener noreferrer" className="">
+            <footer className="footer">
+                <p className="footer-text">
+                    Copyright &copy; {new Date().getFullYear()} de{' '}
+                    <a href="#" target="_blank" rel="noopener noreferrer"
+                    className="">
                         Agleice Sousa
                     </a>
                 </p>

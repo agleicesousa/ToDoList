@@ -3,35 +3,39 @@ import PropTypes from 'prop-types';
 
 export default function TaskForm({ onAddTask, editIndex, tasks }) {
     const [newTask, setNewTask] = useState('');
+    const [dueDate, setDueDate] = useState('');
 
     useEffect(() => {
         if (editIndex !== null) {
-            setNewTask(tasks[editIndex]);
+            const taskToEdit = tasks[editIndex];
+            setNewTask(taskToEdit.task);
+            setDueDate(taskToEdit.dueDate || '');
         }
     }, [editIndex, tasks]);
 
     const handleSubmit = () => {
-        if (newTask.trim()) {
-            onAddTask({ task: newTask });
+        if (newTask.trim() && new Date(dueDate) >= new Date()) {
+            onAddTask({ task: newTask, dueDate });
             setNewTask('');
+            setDueDate('');
         } else {
-            alert('Por favor, escreva uma tarefa válida!');
+            alert('Por favor, escreva uma tarefa válida e selecione uma data futura!');
         }
     };
 
     return (
         <div className="">
-            <input
-                type="text"
-                value={newTask}
-                onChange={(e) => setNewTask(e.target.value)}
+            <input type="text" value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
                 placeholder="Escreva sua tarefa..."
                 className=""
             />
-            <button
-                onClick={handleSubmit}
+            <input type="" value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
                 className=""
-            >
+            />
+            <button onClick={handleSubmit}
+            className="">
                 {editIndex !== null ? 'Atualizar tarefa' : 'Adicionar tarefa'}
             </button>
         </div>
