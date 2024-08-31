@@ -1,5 +1,5 @@
 import './index.css';
-import TodoList from './components/ToDoList';
+import TodoList from './components/TodoList';
 
 export default function App() {
   return (
