@@ -82,13 +82,13 @@ export default function ToDoList() {
     });
 
     return (
-        <div className="">
-            <div className="">
-                <header className="">
-                    <h1 className="">Lista de Tarefas</h1>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+            <div className="container p-6 bg-white rounded-lg shadow-lg max-w-md w-full overflow-auto">
+                <header className="mb-6">
+                    <h1 className="text-3xl font-bold text-center text-blue-600">Lista de Tarefas</h1>
                 </header>
 
-                <main className="">
+                <main className="space-y-6">
                     <Feedback message={feedback} />
                     <TaskForm
                         onAddTask={handleAddTask}
@@ -96,13 +96,13 @@ export default function ToDoList() {
                         tasks={tasks}
                     />
 
-                    <div className="">
-                        <button onClick={() => setFilter('all')} className="">Todas</button>
-                        <button onClick={() => setFilter('completed')} className="">Concluídas</button>
-                        <button onClick={() => setFilter('incomplete')} className="">Não Concluídas</button>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <button onClick={() => setFilter('all')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Todas</button>
+                        <button onClick={() => setFilter('completed')} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Concluídas</button>
+                        <button onClick={() => setFilter('incomplete')} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Não Concluídas</button>
                     </div>
 
-                    <ul className="">
+                    <ul className="space-y-4">
                         {filteredTasks.map((task, index) => (
                             <TaskItem
                                 key={index}
@@ -116,10 +116,10 @@ export default function ToDoList() {
                     </ul>
                 </main>
 
-                <footer className="">
-                    <p className="">
-                        Copyright &copy; {new Date().getFullYear()} de{' '}
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="">
+                <footer className="mt-6 text-center">
+                    <p className="text-sm text-gray-500">
+                        Copyright © {new Date().getFullYear()} de{' '}
+                        <a href="#" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
                             Agleice Sousa
                         </a>
                     </p>

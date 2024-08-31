@@ -9,27 +9,27 @@ function formatDate(dateString) {
 
 export default function TaskItem({ task, onEdit, onRemove, index, onToggleComplete }) {
     return (
-        <li className="">
-            <div className="">
+        <li className="flex items-start p-4 bg-white rounded shadow-sm hover:shadow-md transition-shadow w-full">
+            <div className="flex-shrink-0">
                 {task.completed ? 
-                    <MdCheckBox className="" onClick={() => onToggleComplete(index)} /> :
-                    <MdCheckBoxOutlineBlank className="" onClick={() => onToggleComplete(index)} />}
+                    <MdCheckBox className="text-blue-600 cursor-pointer" onClick={() => onToggleComplete(index)} /> :
+                    <MdCheckBoxOutlineBlank className="text-blue-600 cursor-pointer" onClick={() => onToggleComplete(index)} />}
             </div>
-            <div className="">
-                <div className="">
-                    <span className="">
+            <div className="flex-1 ml-4 overflow-hidden">
+                <div className="max-h-16 overflow-auto">
+                    <span className={`block text-lg ${task.completed ? 'line-through text-gray-500' : ''}`}>
                         {task.task}
                     </span>
-                    <span className="">
+                    <span className="block text-sm text-gray-500 mt-1">
                         {formatDate(task.dueDate)}
                     </span>
                 </div>
             </div>
-            <div className="">
-                <button onClick={() => onEdit(index)} className="">
+            <div className="flex-shrink-0 flex space-x-2 ml-4">
+                <button onClick={() => onEdit(index)} className="p-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                     <FiEdit />
                 </button>
-                <button onClick={() => onRemove(index)} className="">
+                <button onClick={() => onRemove(index)} className="p-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
                     <FiTrash />
                 </button>
             </div>

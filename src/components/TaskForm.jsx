@@ -27,15 +27,16 @@ export default function TaskForm({ onAddTask, editIndex, tasks }) {
     };
 
     return (
-        <div className="">
+        <div className="flex flex-col space-y-4 bg-gray-50 p-4 rounded-lg shadow-md">
             <input type="text" value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
+                onChange={(e) => setNewTask(e.target.value)}
                 placeholder="Escreva sua tarefa..."
-                className=""/>
+                className="p-3 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <input type="date" value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
-                className=""/>
-            <button onClick={handleSubmit} className="">
+                onChange={(e) => setDueDate(e.target.value)}
+                className="p-3 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <button onClick={handleSubmit}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 {editIndex !== null ? 'Atualizar tarefa' : 'Adicionar tarefa'}
             </button>
         </div>
